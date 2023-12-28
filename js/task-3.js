@@ -1,13 +1,35 @@
-'use strict'
+'use strict';
+
 class StringBuilder {
-    initialValue
-    #value = initialValue;
+#value;
+
+constructor(initialValue) {
+this.#value = [initialValue];
 }
+
+get value() { 
+return this.#value.join("");
+}
+
+padEnd(str) {
+this.#value.push(str);
+}
+
+padStart(str) {
+this.#value.unshift(str);
+}
+
+padBoth(str) {
+this.#value.unshift(str);
+this.#value.push(str);
+}
+}
+
 const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
+console.log(builder.value); // "."
 builder.padStart("^");
-console.log(builder.getValue()); // "^."
+console.log(builder.value); // "^."
 builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
+console.log(builder.value); // "^.^"
 builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+console.log(builder.value); // "=^.^="
